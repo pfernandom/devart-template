@@ -15,10 +15,12 @@ I worked on some examples to generate sampled audio and I figured out that I was
 
 So I will use MIDI to generate the audio for the song and if later I’ll try to adapt sampled sound.
 
-Doing my research I found the beautifully constructed library of [JFugue] (http://www.jfugue.org/) which allows to easily compose MIDI music files from text.
+Doing my research I found the beautifully constructed library of [JFugue](http://www.jfugue.org/) which allows to easily compose MIDI music files from text.
+
+![JFugue](http://www.jfugue.org/jfugue.gif)
 
 I have created a Java project using the framework Maven and a basic handler of JFugue methods. 
 
-![JFugue](http://www.jfugue.org/jfugue.gif)
+
 
 
