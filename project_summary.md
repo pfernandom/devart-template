@@ -1,5 +1,4 @@
-# Project Title
-440Hz
+# 440Hz
 
 ## Authors
 -[Pedro Marquez](https://github.com/pfernandom)
