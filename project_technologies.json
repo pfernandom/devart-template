@@ -4,10 +4,12 @@
             "insert apis"
         ],
         "platforms": [
-            "insert platforms"
+            "windows",
+            "java"
         ],
         "toolkits": [
-            "insert toolkits"
+            "maven",
+            "jfugue"
         ]
     },
     "themes": [
