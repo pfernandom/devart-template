@@ -6,7 +6,7 @@ Oh, and the user information (name and age) is encrypted using a one-way algorit
 
 The method that does the conversion is getProfile(), from UserProfile.java.
 
-'''
+```
 public byte[] getProfile() throws IOException, NoSuchAlgorithmException {
 		if (profile == null) {
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -43,7 +43,7 @@ public byte[] getProfile() throws IOException, NoSuchAlgorithmException {
 		}
 		return profile;
 	}
-'''
+```
 After that, we have to convert the bytes to musical notes. And that is the core part.
 For this prototype, I will stick to just one genre and the same instruments (piano, b ass and percussions). I wrote my code in way that it would allow to include more genres and different instruments.
 But I would not be able to code that part of the functionality and test it before tomorrow (deadline!).
