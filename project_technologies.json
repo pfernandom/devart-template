@@ -1,15 +1,16 @@
 {
     "technologies": {
         "apis": [
-            "insert apis"
+            "Google Trends"
         ],
         "platforms": [
-            "windows",
+            "desktop",
             "java"
         ],
         "toolkits": [
             "maven",
-            "jfugue"
+            "jfugue",
+            "rome"
         ]
     },
     "themes": [
