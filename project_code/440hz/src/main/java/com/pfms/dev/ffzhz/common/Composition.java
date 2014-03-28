@@ -9,12 +9,13 @@ import com.pfms.dev.ffzhz.jfugue.InstrumentChannel;
 import com.pfms.dev.ffzhz.jfugue.PercussionChannel;
 
 public class Composition {
-
-	List<InstrumentChannel> channels;
-	PercussionChannel percussion;
+	private List<InstrumentChannel> channels;
+	private PercussionChannel percussion;
+	private int percussionDelay;
 
 	public Composition() {
 		channels = new ArrayList<InstrumentChannel>();
+		percussionDelay = 0;
 	}
 
 	public void addChannel(InstrumentChannel channel) {
@@ -27,7 +28,10 @@ public class Composition {
 			pattern.add(channel.getPattern());
 		}
 		if (percussion != null) {
-			percussion.adaptTime(getMixLength());
+			float length = getMixLength();
+			System.out.println("Length of the mix: "+length);
+			percussion.adaptTime(length);
+			percussion.addDelay(percussionDelay);
 			pattern.add(percussion.getPattern());
 		}
 		return pattern;
@@ -49,8 +53,8 @@ public class Composition {
 		this.channels = channels;
 	}
 
-	public int getMixLength() {
-		int max = 0;
+	public float getMixLength() {
+		float max = 0;
 		for (InstrumentChannel channel : channels) {
 			if (channel.getChannelSize() > max) {
 				max = channel.getChannelSize();
@@ -58,7 +62,5 @@ public class Composition {
 		}
 		return max;
 	}
-
-
 		
 }

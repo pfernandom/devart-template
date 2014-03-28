@@ -92,10 +92,12 @@ public class InstrumentChannel {
 		this.instrument = new Instrument(instrument);
 	}
 
-	public int getChannelSize(){
-		int size = 0;
+	public float getChannelSize(){
+		System.out.println("This channel longs:");
+		float size = 0;
 		for(Note note : notes){
-			size += note.getDuration();
+			size += note.getDecimalDuration();
+			System.out.println("Adding to size"+size);
 		}
 		return size;
 	}

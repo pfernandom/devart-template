@@ -45,8 +45,7 @@ public class CompositionTest {
 
 		System.err.println(pattern.getMusicString());
 
-		Player player = new Player();
-		player.play(pattern);
+		
 
 		assertFalse(pattern.getMusicString().isEmpty());
 	}
@@ -62,8 +61,7 @@ public class CompositionTest {
 			System.out.println(n.getMusicString()+"-"+n.getDuration());
 		}
 		
-		Player player = new Player();
-		player.play(pattern);
+
 	}
 	
 	@Test
@@ -77,8 +75,6 @@ public class CompositionTest {
 			System.out.println(n.getMusicString()+"-"+n.getDuration());
 		}
 		
-		Player player = new Player();
-		player.play(pattern);
 	}
 	
 	@Test

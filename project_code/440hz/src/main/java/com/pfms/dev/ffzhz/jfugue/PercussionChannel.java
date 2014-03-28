@@ -6,6 +6,9 @@ import org.jfugue.Pattern;
 import org.jfugue.Rhythm;
 import org.jfugue.Tempo;
 
+import com.pfms.dev.ffzhz.common.Genre;
+import com.pfms.dev.ffzhz.common.Util;
+
 public class PercussionChannel {
 	private String bassDrum;
 	private String snare;
@@ -13,20 +16,24 @@ public class PercussionChannel {
 	private String crashCymbal;
 	private Tempo tempo;
 	private int repeat;
-	private Note snareNote;
+	private Note hiHatNote;
+	private int percussionDelay;
+
 
 	public PercussionChannel() {
 		repeat = 1;
-		snareNote = MusicStringParser.getNote("[ACOUSTIC_SNARE]i");
+		hiHatNote = MusicStringParser.getNote("[PEDAL_HI_HAT]i");
 		this.tempo = new Tempo(Tempo.ALLEGRO);
 	}
 
 	public Pattern getPattern() {
 		Rhythm rhythm = new Rhythm();
-		rhythm.setLayer(1, bassDrum);
-		rhythm.setLayer(2, snare);
-		rhythm.setLayer(3, pedalHiHat);
-		rhythm.setLayer(4, crashCymbal);
+		repeat--;
+		System.out.println("Repeating " +repeat);
+		rhythm.setLayer(1, Util.multiplyString(bassDrum, repeat));
+		rhythm.setLayer(2, Util.multiplyString(snare, repeat));
+		rhythm.setLayer(3, Util.multiplyString(pedalHiHat, repeat));
+		rhythm.setLayer(4, Util.multiplyString(crashCymbal, repeat)+".");
 
 		rhythm.addSubstitution('O', "[BASS_DRUM]i");
 		rhythm.addSubstitution('o', "[BASS_DRUM]s");
@@ -34,13 +41,12 @@ public class PercussionChannel {
 		rhythm.addSubstitution('^', "[PEDAL_HI_HAT]i");
 		rhythm.addSubstitution('!', "[CRASH_CYMBAL_1]i");
 		rhythm.addSubstitution('.', "Ri");
-
+		
 		Pattern pattern = new Pattern();
 		pattern.add(tempo.getMusicString());
 		pattern.add(rhythm.getPattern());
-		pattern.repeat(repeat);
-
-		System.err.println(pattern);
+	
+		System.err.println("Drums: "+pattern);
 
 		return pattern;
 	}
@@ -50,6 +56,25 @@ public class PercussionChannel {
 		snare = "..*...*...*.";
 		pedalHiHat = "^^^^^^^^^^^^";
 		crashCymbal = "...........!";
+	}
+
+	public void setRythm(Genre genre) {
+		switch (genre) {
+		case JAZZ:
+			bassDrum = "O.O.O.O.O.O.O.O.O.O.O.O.";
+			snare = ".....*...........*......";
+			pedalHiHat = ".^.^.^.^.^.^.^.^.^.^.^.^";
+			crashCymbal = ".......................!";
+			break;
+		case ROCK:
+			bassDrum 	= "O.O.O.O.O.O.";
+			snare 		= ".*.*.*.*.*.*";
+			pedalHiHat 	= "^^^^^^^^^^^^";
+			crashCymbal = "...........!";
+			break;
+		default:
+			setDefaultRythm();
+		}
 	}
 
 	public String getBassDrum() {
@@ -96,13 +121,19 @@ public class PercussionChannel {
 		this.tempo = new Tempo(tempo);
 	}
 
-	public void adaptTime(int length) {
+	public void adaptTime(float length) {
 		while (getChannelSize() < length) {
 			repeat++;
 		}
+		System.out.println("Adjust time to "+getChannelSize());
+	}
+
+	public float getChannelSize() {
+		return  (float) (pedalHiHat.length() * hiHatNote.getDecimalDuration() * repeat);
 	}
 	
-	public int getChannelSize(){
-		return (int) (snare.length() * snareNote.getDuration() * repeat);
+	public void addDelay(int delay){
+		percussionDelay = delay;
 	}
+
 }

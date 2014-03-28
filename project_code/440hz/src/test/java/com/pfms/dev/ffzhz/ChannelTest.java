@@ -1,6 +1,7 @@
 package com.pfms.dev.ffzhz;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.jfugue.Note;
 import org.jfugue.Pattern;
 import org.jfugue.Player;
 import org.jfugue.Tempo;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.pfms.dev.ffzhz.jfugue.InstrumentChannel;
@@ -52,6 +54,7 @@ public class ChannelTest {
 		player.play(song);
 	}
 
+	@Ignore
 	@Test
 	public void InstrumentChannelQuarterSizeTest() {
 		InstrumentChannel channel1 = new InstrumentChannel(Tempo.ALLEGRO,
@@ -69,6 +72,7 @@ public class ChannelTest {
 
 	}
 
+	@Ignore
 	@Test
 	public void InstrumentChannelWholeSizeTest() {
 		InstrumentChannel channel1 = new InstrumentChannel(Tempo.ALLEGRO,
@@ -86,6 +90,7 @@ public class ChannelTest {
 
 	}
 
+	@Ignore
 	@Test
 	public void PercussionChannelSizeTest() {
 		PercussionChannel percussion = new PercussionChannel();

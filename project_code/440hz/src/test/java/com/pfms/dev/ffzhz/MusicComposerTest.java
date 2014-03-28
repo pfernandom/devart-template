@@ -8,6 +8,7 @@ import java.io.File;
 import org.jfugue.MusicStringParser;
 import org.jfugue.Note;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.pfms.dev.ffzhz.api.UserProfileProvider;
@@ -24,7 +25,7 @@ public class MusicComposerTest {
 		composer = new MusicComposerImpl();
 	}
 
-	
+	@Ignore
 	@Test
 	public void createSongTest() {
 		UserProfileProvider provider = new UserProfileProviderImpl();
@@ -39,19 +40,27 @@ public class MusicComposerTest {
 		assertTrue("The song can't be read", song.canRead());
 	}
 	
+	/*
 	@Test
 	public void composeNotes(){
 		Note note = MusicStringParser.getNote("C5");
 		Scale scale = new Scale(note, Scale.Type.MAJOR);
 		System.out.println(composer.createNotesString(scale, 24));
 	}
+	*/
 	
 	@Test
 	public void getNextNoteTest(){
 		Note note = MusicStringParser.getNote("C5");
 		Note note2 = MusicStringParser.getNote("E5");
 		Scale scale = new Scale(note, Scale.Type.MAJOR);
-		System.out.println(composer.getNextNote(note2, scale).getMusicString());
+		System.out.println(composer.getNextRandomNote(note2, scale).getMusicString());
+	}
+	
+	@Test
+	public void values(){
+		System.err.println("Max:"+Byte.MAX_VALUE);
+		System.err.println("Min:"+Byte.MIN_VALUE);
 	}
 
 }
